@@ -4,7 +4,7 @@ import fs from 'fs'
 //add food item
 const addFood = async (req,res) => {
 
-    let image_filename = `${req.file.image_filename}`
+    let image_filename = `${req.file.filename}`
 
     const food = new foodModel({
         name:req.body.name,
@@ -17,7 +17,7 @@ const addFood = async (req,res) => {
         await food.save();
         res.json({success:true,message:"Food Added"})
     } catch (error) {
-        console.log.apply(error)
+        console.log(error)
         res.json({success:false,message:"Error"})
     }
 
@@ -47,5 +47,6 @@ const removeFood = async (req,res) =>{
         res.json({success:false,message:"Error"})
     }
 }
+
 
 export{addFood,listFood,removeFood}
